@@ -8,16 +8,23 @@ function findValue($N)
     $arr = array();
     for ($i = 0; $i < 100; $i++) {
         $num = rand(0, 1000);
-        array_push($arr, $num);       
-        if ($N === $i) {
+        array_push($arr, $num);
+        if ($N > 100 || $N < 0){
+            throw new Exception($N ." khong nho hon 0 va khong lon hon 100");
+        }elseif ($N === $i) {
             echo "Value: " . $arr[$i] ."<br>";
-        }
+        }      
+        
     }
     
     print_r($arr);
 }
+try{
+    findValue($index);
+}catch(Exception $mess){
+    echo "Message " .$mess->getMessage();
+}
 
-findValue($index);
 
 ?>
 

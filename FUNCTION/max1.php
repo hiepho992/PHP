@@ -21,8 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $number = (int) $_POST["number"];  
     if ($_POST["submit"] === "value"){
         array_push($array, $number);
+        $_SESSION["array"] = $array;
         print_r($array);
-    }  
+        
+    } 
+    if ($_POST["submit"] === "max"){
+        echo findMax($array);
+        unset($_SESSION["array"]);
+    } 
 }
 
 
