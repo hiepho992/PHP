@@ -11,9 +11,6 @@ class Fan
 
     public function __construct()
     {
-        self::SLOW;
-        self::MEDIUM;
-        self::FAST;
         $this->speed = self::SLOW;
         $this->on = false;
         $this->radius = 5;
@@ -22,20 +19,22 @@ class Fan
 
     public function setSpeed($speed)
     {
-        if ($speed === 2) {
-            $speed = self::MEDIUM;
-        } elseif ($speed === 3) {
-            $speed = self::FAST;
-        } else {
-            $speed = self::SLOW;
-        }
+        $this->speed = $speed;
     }
-
+    public function getSpeed()
+    {
+        return $this->speed;
+    }
 
     public function setOn($on)
     {
         return $this->on = $on;
     }
+    public function geton()
+    {
+        return $this->on;
+    }
+
     public function setRadius($radius)
     {
         if (!is_int($radius) && (int) $radius < 0) {
@@ -44,23 +43,15 @@ class Fan
             return $this->radius = $radius;
         }
     }
-    public function setColor($color)
-    {
-        return $this->color = $color;
-    }
-
-    public function getSpeed()
-    {
-        return $this->speed;
-    }
-    public function geton()
-    {
-        return $this->on;
-    }
     public function getRadius()
     {
         return $this->radius;
     }
+
+    public function setColor($color)
+    {
+        return $this->color = $color;
+    }  
     public function getColor()
     {
         return $this->color;
@@ -68,15 +59,18 @@ class Fan
     public function toString()
     {
         if ($this->getOn() === true) {
-            return "fan is on" . $this->color . $this->radius . $this->speed;
+            return "fan is on: " ." color: " .$this->getColor() ." Radius " . $this->getRadius() ." Speed: " . $this->getSpeed();
         } else {
             return "fan is off" . $this->color . $this->radius . $this->speed;
         }
     }
 }
 $fan1 = new Fan();
-$fan1->setSpeed(2);
-echo $fan1->getSpeed();
+$fan1->setSpeed($fan1::FAST);
+$fan1->setRadius(10);
+$fan1->setColor("yellow");
+$fan1->setOn(true);
+echo $fan1->toString();
 
 
 
